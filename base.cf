@@ -54,7 +54,7 @@ bundle agent control_package(method,pkg,policy) {
 
                 redhat.add::
                         "has_package" expression => returnszero("/bin/rpm -q ${pkg} --quiet", "noshell");
-		
+
 		debian::
 			"$(method)" expression => isvariable(method);
 
@@ -70,6 +70,13 @@ bundle agent control_package(method,pkg,policy) {
                 "$(pkg)"
                         package_policy => "$(policy)",
                         package_method => pip(""),
+                        package_select => ">=";
+                        #package_architectures => { "*" };
+
+                debian.npm::
+                "$(pkg)"
+                        package_policy => "$(policy)",
+                        package_method => npm,
                         package_select => ">=";
                         #package_architectures => { "*" };
 
