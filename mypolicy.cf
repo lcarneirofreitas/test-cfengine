@@ -1,0 +1,17 @@
+####################################################################################
+bundle agent example
+{
+files:
+   cfengine_3::      # This is a class context (the promise will only
+                     # be kept on a CFEngine_3 system)
+
+  "/home/vagrant/example.txt"  # Path and name of the file we wish to ensure exists
+       create => "true";       # Make sure the file exists; create if it does not
+
+files: 
+   cfengine_3::
+
+  "/home/vagrant/teste.txt"
+       perms => change_owner("0777","root","root"),
+       create => "true";
+}
