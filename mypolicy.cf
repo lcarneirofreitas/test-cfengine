@@ -15,3 +15,19 @@ files:
        perms => change_owner("0777","root","root"),
        create => "true";
 }
+
+# update git repositorie cfengine
+bundle agent vcs_update
+{
+commands:
+  policy_server::
+    "/usr/bin/git"
+      args => "pull --ff-only origin master",
+      contain => masterfiles_contain;
+}
+
+body contain masterfiles_contain
+{
+  chdir => "/var/cfengine/masterfiles";
+}
+

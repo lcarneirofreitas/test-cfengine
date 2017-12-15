@@ -14,6 +14,7 @@ body common control
                           @(inventory.bundles),
                           def,
 			  example,
+			  vcs_update,
                           @(cfengine_enterprise_hub_ha.classification_bundles),
 
                           # Design Center
