@@ -65,7 +65,8 @@ bundle common def
         ifvarclass => not(isvariable("mailto"));
 
       "mailfrom"
-        string => "root@$(sys.uqhost).$(def.domain)",
+        #string => "root@$(sys.uqhost).$(def.domain)",
+        string => "lcarneirofreitas@gmail.com",
         ifvarclass => not(isvariable("mailfrom"));
 
       "smtpserver"
