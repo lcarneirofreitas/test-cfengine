@@ -76,7 +76,7 @@ bundle agent control_package(method,pkg,policy) {
                 debian.npm::
                 "$(pkg)"
                         package_policy => "$(policy)",
-                        package_method => npm,
+                        package_method => npm_g,
                         package_select => ">=";
                         #package_architectures => { "*" };
 
