@@ -41,12 +41,12 @@ bundle agent delete_file(files) {
 ## bundle para instalar/remover/update de pacotes com o apt
 bundle agent control_package(pkg,policy) {
 
-        vars:   
-                i386|i486|i586|i686::
-                        "arch" slist => { "noarch", "i386", "i486", "i586", "i686" };
-
-                x86_64::
-                        "arch" slist => { "noarch", "x86_64" };
+        #vars:   
+        #        i386|i486|i586|i686::
+        #                "arch" slist => { "noarch", "i386", "i486", "i586", "i686" };
+	#
+        #        x86_64::
+        #                "arch" slist => { "noarch", "x86_64" };
 
         classes:
                 redhat::
