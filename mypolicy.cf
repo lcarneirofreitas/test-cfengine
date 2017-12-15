@@ -38,7 +38,7 @@ methods:
 	usebundle => control_package("apt","python-pip","add");
 
 	"install package"
-	usebundle => control_package("pip","datadog","add");
+	usebundle => control_package("pip","datadog","delete");
 }
 
 bundle common g {
