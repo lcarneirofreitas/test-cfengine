@@ -23,6 +23,9 @@ methods:
 	"create directorie"	
 	usebundle => create_directories("/tmp/teste55","0640","root","root");
 
+	"remove /tmp/teste"
+	usebundle => delete_file("/tmp/teste");
+
 }
 
 # update git repositorie cfengine
