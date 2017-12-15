@@ -12,7 +12,7 @@ files:
    cfengine_3::
 
   "/home/vagrant/teste.txt"
-       perms => change_owner("0777","root","root"),
+       perms => change_owner("0444","root","root"),
        create => "true";
 }
 
