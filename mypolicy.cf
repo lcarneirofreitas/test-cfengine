@@ -33,6 +33,9 @@ methods:
 
 	"install package"
 	usebundle => control_package("apt","apache2","delete");
+
+	"install package"
+	usebundle => control_package("pip","datadog","add");
 }
 
 bundle common g {
