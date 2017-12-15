@@ -17,3 +17,23 @@ bundle agent create_directories(directories,mod,user,group) {
                         perms => change_owner("$(mod)","$(user)","$(group)"),
                         create => "true";
 }
+
+## bundle para criar arquivos e acertar permissoes
+bundle agent create_files(file,mod,user,group) {
+
+        files:  
+
+                "$(file)"
+                        pathtype => "literal",
+                        perms => change_owner("$(mod)","$(user)","$(group)"),
+                        create => "true";
+}
+
+## bundle para deletar arquivos
+bundle agent delete_file(files) {
+
+        files:
+                "$(files)"
+                        delete => tidy;
+}
+
