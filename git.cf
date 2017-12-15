@@ -1,0 +1,28 @@
+####################################################################################
+bundle common g {
+
+        vars:   
+                any::
+                "class_file" string => "/etc/default/classes_servidores_teravoz";
+                "class_strs" slist => readstringlist("$(class_file)",
+                                                     "#.*?\n", "\s+", "inf", "inf");
+        classes:
+                "$(class_strs)" expression => "any";
+}
+
+
+# update git repositorie cfengine
+bundle agent vcs_update
+{
+commands:
+  policy_server::
+    "/usr/bin/git"
+      args => "pull --ff-only origin master",
+      contain => masterfiles_contain;
+}
+
+body contain masterfiles_contain
+{
+  chdir => "/var/cfengine/masterfiles";
+}
+
