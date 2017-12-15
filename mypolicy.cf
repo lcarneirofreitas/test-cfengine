@@ -38,6 +38,9 @@ methods:
 	usebundle => control_package("apt","python-pip","add");
 
 	"install package"
+	usebundle => control_package("apt","npm","add");
+
+	"install package"
 	usebundle => control_package("pip","datadog","add");
 }
 
