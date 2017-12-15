@@ -17,7 +17,7 @@ files:
 
 methods:
 	
-	usebunble => create_directories("/tmp/teste44","0777","root","root");
+	usebundle => create_directories("/tmp/teste44","0777","root","root");
 
 }
 
