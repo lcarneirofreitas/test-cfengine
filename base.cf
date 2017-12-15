@@ -61,18 +61,18 @@ bundle agent control_package(pkg,policy) {
                         package_policy => "$(policy)",
                         package_method => apt,
                         package_select => ">=",
-                        package_architectures => { "*" };
+                        #package_architectures => { "*" };
 
                 redhat.!add::
                 "$(pkg)"
                         package_policy => "$(policy)",
                         package_method => yum,
-                        package_architectures => { "${arch}" };
+                        #package_architectures => { "${arch}" };
 
                 redhat.add.!has_package::
                 "$(pkg)"
                         package_policy => "$(policy)",
                         package_method => yum,
-                        package_architectures => { "${arch}" };
+                        #package_architectures => { "${arch}" };
 }
 
