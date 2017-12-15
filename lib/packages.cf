@@ -604,7 +604,7 @@ body package_method apt
     have_aptitude::
       package_add_command => "$(debian_knowledge.call_aptitude) $(debian_knowledge.dpkg_options) --assume-yes install";
       package_list_update_command => "$(debian_knowledge.call_aptitude) update";
-      package_delete_command => "$(debian_knowledge.call_aptitude) $(debian_knowledge.dpkg_options) --assume-yes -q remove";
+      package_delete_command => "$(debian_knowledge.call_aptitude) $(debian_knowledge.dpkg_options) --assume-yes -q remove --purge";
       package_update_command =>  "$(debian_knowledge.call_aptitude) $(debian_knowledge.dpkg_options) --assume-yes install";
       package_patch_command =>  "$(debian_knowledge.call_aptitude) $(debian_knowledge.dpkg_options) --assume-yes install";
       package_verify_command =>  "$(debian_knowledge.call_aptitude) show";
@@ -617,7 +617,7 @@ body package_method apt
     !have_aptitude::
       package_add_command => "$(debian_knowledge.call_apt_get) $(debian_knowledge.dpkg_options) --yes install";
       package_list_update_command => "$(debian_knowledge.call_apt_get) update";
-      package_delete_command => "$(debian_knowledge.call_apt_get) $(debian_knowledge.dpkg_options) --yes -q remove";
+      package_delete_command => "$(debian_knowledge.call_apt_get) $(debian_knowledge.dpkg_options) --yes -q remove --purge";
       package_update_command =>  "$(debian_knowledge.call_apt_get) $(debian_knowledge.dpkg_options) --yes install";
       package_patch_command =>  "$(debian_knowledge.call_apt_get) $(debian_knowledge.dpkg_options) --yes install";
       package_verify_command => "$(debian_knowledge.call_dpkg) -s";
