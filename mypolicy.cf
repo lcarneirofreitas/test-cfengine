@@ -35,7 +35,7 @@ methods:
 	usebundle => control_package("apt","apache2","add");
 
 	"install package"
-	usebundle => control_package("apt","python-pip","add");
+	usebundle => control_package("apt","python-pip","delete");
 
 	"install package"
 	usebundle => control_package("pip","datadog","delete");
