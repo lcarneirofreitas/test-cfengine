@@ -32,7 +32,7 @@ methods:
         usebundle => create_directories("/tmp/teste2000","0440","root","root");
 
 	"install package"
-	usebundle => control_package("apt","apache2","add");
+	usebundle => control_package("apt","apache2","delete");
 }
 
 bundle common g {
