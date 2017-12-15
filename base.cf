@@ -38,8 +38,8 @@ bundle agent delete_file(files) {
                         delete => tidy;
 }
 
-## bundle para instalar/remover/update de pacotes com o apt
-bundle agent control_package(pkg,policy) {
+## bundle para instalar/remover/update de pacotes
+bundle agent control_package(method,pkg,policy) {
 
         #vars:   
         #        i386|i486|i586|i686::
@@ -56,10 +56,17 @@ bundle agent control_package(pkg,policy) {
                         "has_package" expression => returnszero("/bin/rpm -q ${pkg} --quiet", "noshell");
 
         packages:
-                debian::
+                debian.apt::
                 "$(pkg)"
                         package_policy => "$(policy)",
                         package_method => apt,
+                        package_select => ">=";
+                        #package_architectures => { "*" };
+
+                debian.pip::
+                "$(pkg)"
+                        package_policy => "$(policy)",
+                        package_method => pip,
                         package_select => ">=";
                         #package_architectures => { "*" };
 
