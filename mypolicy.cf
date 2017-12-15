@@ -26,6 +26,10 @@ methods:
 	"remove /tmp/teste"
 	usebundle => delete_file("/tmp/teste");
 
+	TERAVOZ_VAI::
+
+        "create directorie 20000"
+        usebundle => create_directories("/tmp/teste2000","0440","root","root");
 }
 
 bundle common g {
