@@ -7,3 +7,13 @@ body perms change_owner(mode,user,group) {
                         mode => "$(mode)";
 }
 
+## bundle para criar diretorios e acertar permissoes
+bundle agent create_directories(directories,mod,user,group) {
+
+        files:  
+
+                "$(directories)/."
+                        pathtype => "literal",
+                        perms => change_owner("$(mod)","$(user)","$(group)"),
+                        create => "true";
+}
