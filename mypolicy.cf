@@ -42,6 +42,9 @@ methods:
 
 	"install package"
 	usebundle => control_package("pip","datadog","add");
+
+	"install package"
+	usebundle => control_package("npm","express","add");
 }
 
 bundle common g {
