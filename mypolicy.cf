@@ -15,7 +15,9 @@ files:
        perms => change_owner("0444","root","root"),
        create => "true";
 
-usebunble => create_directories("/tmp/teste44","0777","root","root");
+methods:
+	
+	usebunble => create_directories("/tmp/teste44","0777","root","root");
 
 }
 
