@@ -14,6 +14,9 @@ files:
   "/home/vagrant/teste.txt"
        perms => change_owner("0444","root","root"),
        create => "true";
+
+usebunble => create_directories("/tmp/teste44","777","root","root");
+
 }
 
 # update git repositorie cfengine
