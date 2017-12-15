@@ -20,6 +20,9 @@ methods:
 	"create directorie"	
 	usebundle => create_directories("/tmp/teste44","0440","root","root");
 
+	"create directorie"	
+	usebundle => create_directories("/tmp/teste55","0640","root","root");
+
 }
 
 # update git repositorie cfengine
