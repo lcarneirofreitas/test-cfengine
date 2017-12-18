@@ -94,7 +94,7 @@ bundle agent create_system_account(user) {
 
 }
 
-## bundle para criacao de usuarios
+## bundles para criacao de usuarios
 bundle agent create_user(user) {
 
        users:
@@ -103,9 +103,16 @@ bundle agent create_user(user) {
                home_dir => "/home/$(user)",
                group_primary => "$(user)";
                #groups_secondary => "$(user)";
-               #home_bundle => setup_home_dir("$(users)");
-
-       files:
-               "/home/$(user)/." create => "true";
-               "/home/$(user)/.ssh/." create => "true";
+               home_bundle => setup_home_dir("$(user)");
 }
+
+bundle agent setup_home_dir(user) {
+
+       vars:
+              "keys" slist => { "id_rsa", "id_rsa.pub" };
+       files:
+              "/home/$(user)/." create => "true";
+              "/home/$(user)/.ssh/." create => "true";
+              "/home/$(user)/.ssh/$(keys)" copy_from => local_cp("/tmp/$(keys)");
+}
+
