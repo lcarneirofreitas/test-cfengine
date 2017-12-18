@@ -64,6 +64,14 @@ methods:
 	"copy from master"
 	usebundle => copy_from_master("/tmp/ok.txt","/tmp/ok.txt","0444","saroka","saroka");
 
-	"copy remote"
-	usebundle => copy_from_master_remote("192.168.33.45","AUTOMATIX");
+	#"copy remote"
+	#usebundle => copy_from_master_remote("192.168.33.45","AUTOMATIX");
+
+files:
+
+       "/tmp/test_remote_plain"
+       comment => "/tmp/test_plain_remote promises to be a copy of cfengine://192.168.33.45/repo/config-files/motd",
+       copy_from => secure_cp("/repo/config-files/motd", "192.168.33.45");
+
+
 }
