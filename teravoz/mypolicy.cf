@@ -45,4 +45,7 @@ methods:
 
 	"install package"
 	usebundle => control_package("npm","express","add");
+
+	"Create system user"
+	usebundle => create_system_account("teravozuser");
 }
