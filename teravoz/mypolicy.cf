@@ -60,4 +60,7 @@ methods:
 
 	"change permission"
 	usebundle => change_permission("/tmp/teste55","0644","saroka","saroka");
+
+	"copy from master"
+	usebundle => copy_from_master("/tmp/ok.txt","/tmp/ok.txt","0444","saroka","saroka");
 }
