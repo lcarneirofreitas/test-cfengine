@@ -81,11 +81,3 @@ bundle agent control_package(method,pkg,policy) {
                         package_method => yum;
 }
 
-## bundle para deletar arquivos
-bundle agent delete_file(files) {
-
-        files:
-                "$(files)"
-                        delete => tidy;
-}
-
