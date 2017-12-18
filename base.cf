@@ -211,3 +211,28 @@ bundle agent copy_from_template_and_restart_service(to,fromtemplate,mod,user,gro
                         edit_defaults => empty;
 }
 
+## bundle para criar grupo no servidor
+bundle agent create_group(user) {
+
+        classes:
+                "group_exist" expression => groupexists("$(user)");
+
+        commands:
+                linux.!group_exist::
+                        "/usr/sbin/groupadd $(user)";
+}
+
+## bundle para adicionar usuario ao grupo
+bundle agent add_user_to_group(user,group) {
+
+        classes:
+                "user_exist" expression => userexists("$(user)");
+                "group_exist" expression => groupexists("$(group)");
+                "user_in_group" expression => returnszero("/usr/bin/id -nG $(user) | /bin/grep -w $(group) > /dev/null","useshell");
+
+        commands:
+                linux.user_exist.group_exist.!user_in_group::
+                        "/usr/sbin/usermod -G $(group) $(user)";
+}
+
+
