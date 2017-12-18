@@ -79,6 +79,9 @@ methods:
 	"Timezone"
 	usebundle => configura_timezone;
 
+	"Copy script"
+	usebundle => copy_from_master_default_and_restart_service("/jav/bin/install_oracle_java8.sh","/jav/bin/install_oracle_java8.sh","0755","root","root","");
+
 	"Install java8"
 	usebundle => run_cmd_if_not_success("/bin/ls /usr/lib/jvm/ | /bin/grep 8 > /dev/null","/jav/bin/install_oracle_java8.sh");
 
