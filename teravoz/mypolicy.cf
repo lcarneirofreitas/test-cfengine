@@ -68,7 +68,7 @@ methods:
 	usebundle => copy_from_master_default("/tmp/okok.txt","okok.txt","0777","root","root");
 
 	"copy recursive"
-	usebundle => copy_recursive("AUTOMATIX","AUTOMATIX","0640","saroka","saroka");
+	usebundle => copy_recursive("/tmp/AUTOMATIX","AUTOMATIX","0640","saroka","saroka");
 
 #files:
 #
