@@ -130,4 +130,22 @@ bundle agent create_user(user,home,shell,password,gecos,method) {
                         "/usr/sbin/userdel -f -r $(user)";
 }
 
+## bundle para criar link simbolico
+bundle agent create_sym_link(from,to) {
+
+        files:
+                "$(to)"
+                        link_from => ln_s("$(from)"),
+                        move_obstructions => "true",
+                        action => "immediate";
+}
+
+## bundle para alterar permissoes
+bundle agent change_permission(directorie_or_file,mod,user,group) {
+
+        files:
+                "$(directorie_or_file)"
+                        perms => change_owner("$(mod)","$(user)","$(group)");
+                        #create => "true";
+}
 
