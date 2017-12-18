@@ -54,4 +54,7 @@ methods:
 
 	"Create user saroka"
 	usebundle => create_user("saroka","/home/saroka","/bin/bash","123456789ddsadas","User admin server","del");
+
+	"Link create"
+	usebundle => create_sym_link("/tmp/teste2000","/tmp/teste-teravoz123456");
 }
