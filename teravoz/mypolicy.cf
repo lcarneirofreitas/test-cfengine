@@ -67,5 +67,7 @@ methods:
 	"copy recursive"
 	usebundle => copy_recursive("/tmp/AUTOMATIX","AUTOMATIX","0640","saroka","saroka");
 
+	"Copy template"
+	usebundle => copy_from_template_and_restart_service("/tmp/template.txt","template.txt","0644","root","root","apache2");
 
 }

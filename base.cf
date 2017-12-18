@@ -197,4 +197,17 @@ bundle agent copy_recursive(to,from,mod,user,group) {
                         action => "immediate";
 }
 
+## bundle para expandir templates, acertar permissoes e restartar o servico
+bundle agent copy_from_template_and_restart_service(to,fromtemplate,mod,user,group,service) {
+
+        files:
+                "$(to)"
+                        perms => change_owner("$(mod)","$(user)","$(group)"),
+                        create => "true",
+                        action => "immediate",
+                        edit_line => expand_template("$(sys.workdir)/masterfiles/templates/$(fromtemplate)"),
+                        classes => if_repaired("$(service)_restart"),
+                        changes => detect_content,
+                        edit_defaults => empty;
+}
 
