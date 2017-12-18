@@ -155,7 +155,7 @@ bundle agent copy_from_master(to,from,mod,user,group) {
         files:
                 "$(to)"
                         perms => change_owner("$(mod)","$(user)","$(group)"),
-                        copy_from => secure_cp("$(sys.workdir)/masterfiles/$(from)","localhost"),
+                        copy_from => secure_cp("$(sys.workdir)/masterfiles/teravoz/$(from)","localhost"),
                         repository => "$(sys.workdir)/repository",
                         changes => detect_content,
                         action => "immediate";
