@@ -89,7 +89,7 @@ bundle agent create_system_account(user) {
 
         commands:
                 !exist::
-                        "/usr/sbin/adduser -r $(user) -s /sbin/nologin",
+                        "/usr/sbin/adduser -r $(user) -s /sbin/nologin"
                         comment => "Adding system account";
 
 }
