@@ -49,6 +49,6 @@ methods:
 	"Create system user"
 	usebundle => create_system_account("teravozuser");
 
-	"Create user"
-	usebundle => create_user("saroka");
+	#"Create user"
+	#usebundle => create_user("saroka");
 }
