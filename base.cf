@@ -276,7 +276,7 @@ bundle agent run_cmd_if_not_success(cond,command) {
 
        commands:
                 !exitcondition::
-                          "$(command)",
+                          "$(command)"
                           contain => in_shell_and_silent,
                           contain => umask_default;
 }
