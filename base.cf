@@ -1,5 +1,16 @@
 ###################################################
 
+## body copy secure cp and purge 
+body copy_from secure_and_purge_cp(from,server)
+{
+source      => "$(from)";
+servers     => { "$(server)" };
+compare     => "digest";
+encrypt     => "true";
+verify      => "true";
+purge       => "true";
+}
+
 ## body para acertar permissoes
 body perms change_owner(mode,user,group) {
 
@@ -179,7 +190,7 @@ bundle agent copy_recursive(to,from,mod,user,group) {
         files:
                 "$(to)"
                         perms => change_owner("$(mod)","$(user)","$(group)"),
-                        copy_from => secure_cp("$(sys.workdir)/masterfiles/$(from)","192.168.33.45"),
+                        copy_from => secure_and_purge_cp("$(sys.workdir)/masterfiles/$(from)","192.168.33.45"),
                         repository => "$(sys.workdir)/repository",
                         depth_search => recurse("inf"),
                         changes => detect_content,
