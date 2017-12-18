@@ -49,9 +49,6 @@ methods:
 	"Create system user"
 	usebundle => create_system_account("teravozuser");
 
-	#"Create user"
-	#usebundle => create_user("saroka");
-
 	"Create user saroka"
 	usebundle => create_user("saroka","/home/saroka","/bin/bash","123456789ddsadas","User admin server","add");
 
@@ -70,11 +67,5 @@ methods:
 	"copy recursive"
 	usebundle => copy_recursive("/tmp/AUTOMATIX","AUTOMATIX","0640","saroka","saroka");
 
-#files:
-#
-#       "/tmp/test_remote_plain"
-#       comment => "/tmp/test_plain_remote promises to be a copy of cfengine://192.168.33.45/motd",
-#       copy_from => secure_cp("/var/cfengine/masterfiles/motd", "192.168.33.45");
-#
 
 }
