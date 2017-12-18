@@ -94,25 +94,40 @@ bundle agent create_system_account(user) {
 
 }
 
-## bundles para criacao de usuarios
-bundle agent create_user(user) {
+### bundles para criacao de usuarios
+#bundle agent create_user(user) {
+#
+#       users:
+#               "$(user)"
+#               policy => "present",
+#               home_dir => "/home/$(user)",
+#               #group_primary => "$(user)",
+#               #groups_secondary => "$(user)";
+#               home_bundle => setup_home_dir("$(user)");
+#}
+#
+#bundle agent setup_home_dir(user) {
+#
+#       #vars:
+#       #       "keys" slist => { "id_rsa", "id_rsa.pub" };
+#       files:
+#              "/home/$(user)/." create => "true";
+#              "/home/$(user)/.ssh/." create => "true";
+#       #       "/home/$(user)/.ssh/$(keys)" copy_from => local_cp("/tmp/$(keys)");
+#}
 
-       users:
-               "$(user)"
-               policy => "present",
-               home_dir => "/home/$(user)",
-               #group_primary => "$(user)",
-               #groups_secondary => "$(user)";
-               home_bundle => setup_home_dir("$(user)");
+## bundle para criar usuario administrador no servidor
+bundle agent create_user(user,home,shell,password,gecos,method) {
+
+        classes:
+                "user_exist" expression => userexists("$(user)");
+                "$(method)" expression => isvariable(method);
+
+        commands:
+                linux.!user_exist.add::
+                        "/usr/sbin/useradd -m -d $(home) -s $(shell) -p $(password) -c $(gecos) $(user)";
+                linux.user_exist.del::
+                        "/usr/sbin/userdel -f -r $(user)";
 }
 
-bundle agent setup_home_dir(user) {
-
-       #vars:
-       #       "keys" slist => { "id_rsa", "id_rsa.pub" };
-       files:
-              "/home/$(user)/." create => "true";
-              "/home/$(user)/.ssh/." create => "true";
-       #       "/home/$(user)/.ssh/$(keys)" copy_from => local_cp("/tmp/$(keys)");
-}
 
