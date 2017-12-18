@@ -174,17 +174,6 @@ body copy_from remote(server, path) {
         purge => "true";
 }
 
-body depth_search recurse {
-
-        depth => "inf";
-}
-
-body file_select u_input_files {
-        leaf_name => { ".*.cf" };
-        file_result => "leaf_name";
-}
-
-
 ## bundle para copiar arquivos e acertar permissoes
 bundle agent copy_from_master_remote(cfserverd,server_master) {
 
