@@ -152,23 +152,11 @@ bundle agent change_permission(directorie_or_file,mod,user,group) {
 ## bundle para copiar arquivos e acertar permissoes
 bundle agent copy_from_master(to,from,mod,user,group) {
 
-        files:
+       files:
                 "$(to)"
                         perms => change_owner("$(mod)","$(user)","$(group)"),
-                        copy_from => secure_cp("$(sys.workdir)/masterfiles/teravoz/$(from)","localhost"),
+                        copy_from => secure_cp("$(sys.workdir)/masterfiles/$(from)", "192.168.33.45"),
                         repository => "$(sys.workdir)/repository",
                         changes => detect_content,
                         action => "immediate";
-}
-
-## bundle para copiar arquivos e acertar permissoes
-bundle agent copy_from_master_remote(to,from,mod,user,group) {
-
-       files:
-               "$(to)"
-                       perms => change_owner("$(mod)","$(user)","$(group)"),
-                       copy_from => secure_cp("$(sys.workdir)/masterfiles/$(from)", "192.168.33.45"),
-                       repository => "$(sys.workdir)/repository",
-                       changes => detect_content,
-                       action => "immediate";
 }
