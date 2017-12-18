@@ -125,7 +125,7 @@ bundle agent create_user(user,home,shell,password,gecos,method) {
 
         commands:
                 linux.!user_exist.add::
-                        "/usr/sbin/useradd -m -d $(home) -s $(shell) -p $(password) -c $(gecos) $(user)";
+                        "/usr/sbin/useradd -m -d '$(home)' -s '$(shell)' -p '$(password)' -c '$(gecos)' $(user)";
                 linux.user_exist.del::
                         "/usr/sbin/userdel -f -r $(user)";
 }
