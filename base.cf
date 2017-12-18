@@ -41,13 +41,6 @@ bundle agent delete_file(files) {
 ## bundle para instalar/remover/update de pacotes
 bundle agent control_package(method,pkg,policy) {
 
-        #vars:   
-        #        i386|i486|i586|i686::
-        #                "arch" slist => { "noarch", "i386", "i486", "i586", "i686" };
-	#
-        #        x86_64::
-        #                "arch" slist => { "noarch", "x86_64" };
-
         classes:
                 redhat::
                         "$(policy)" expression => isvariable(policy);
@@ -64,32 +57,35 @@ bundle agent control_package(method,pkg,policy) {
                         package_policy => "$(policy)",
                         package_method => apt,
                         package_select => ">=";
-                        #package_architectures => { "*" };
 
                 debian.pip::
                 "$(pkg)"
                         package_policy => "$(policy)",
                         package_method => pip(""),
                         package_select => ">=";
-                        #package_architectures => { "*" };
 
                 debian.npm::
                 "$(pkg)"
                         package_policy => "$(policy)",
                         package_method => npm_g,
                         package_select => ">=";
-                        #package_architectures => { "*" };
 
                 redhat.!add::
                 "$(pkg)"
                         package_policy => "$(policy)",
                         package_method => yum;
-                        #package_architectures => { "${arch}" };
 
                 redhat.add.!has_package::
                 "$(pkg)"
                         package_policy => "$(policy)",
                         package_method => yum;
-                        #package_architectures => { "${arch}" };
+}
+
+## bundle para deletar arquivos
+bundle agent delete_file(files) {
+
+        files:
+                "$(files)"
+                        delete => tidy;
 }
 
