@@ -1,5 +1,10 @@
 ###################################################
 
+## body para umask default linux 022
+body contain umask_default {
+        umask => "022";
+}
+
 ## body copy secure cp and purge 
 body copy_from secure_and_purge_cp(from,server)
 {
