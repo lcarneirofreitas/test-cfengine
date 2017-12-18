@@ -161,24 +161,14 @@ bundle agent copy_from_master(to,from,mod,user,group) {
                         action => "immediate";
 }
 
-# body remote
-body copy_from remote(server, path) {
-
-        servers => { "${server}" };
-        encrypt => "true";
-        trustkey => "true";
-        source => "${path}";
-        compare => "digest";
-        preserve => "true";
-        verify => "true";
-        purge => "true";
-}
-
 ## bundle para copiar arquivos e acertar permissoes
-bundle agent copy_from_master_remote(cfserverd,server_master) {
+bundle agent copy_from_master_remote(to,from,mod,user,group) {
 
-        files:
-                 "${sys.workdir}/masterfiles"
-                        copy_from => remote("${cfserverd}","${server_master}"),
-                        depth_search => recurse("inf");
+       files:
+               "$(to)"
+                       copy_from => secure_cp("$(sys.workdir)/masterfiles/$(from)", "192.168.33.45"),
+                       depth_search => recurse("inf"),
+                       repository => "$(sys.workdir)/repository",
+                       changes => detect_content,
+                       action => "immediate";
 }
