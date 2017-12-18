@@ -104,4 +104,8 @@ bundle agent create_user(user) {
                group_primary => "$(user)";
                #groups_secondary => "$(user)";
                #home_bundle => setup_home_dir("$(users)");
+
+       files:
+               "/home/$(user)/." create => "true";
+               "/home/$(user)/.ssh/." create => "true";
 }
