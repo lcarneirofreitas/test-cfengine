@@ -167,7 +167,7 @@ bundle agent copy_from_master_default(to,from,mod,user,group) {
         files:
                 "$(to)"
                         perms => change_owner("$(mod)","$(user)","$(group)"),
-                        copy_from => secure_cp("$(sys.workdir)/masterfiles_default/$(from)","192.168.33.45"),
+                        copy_from => secure_cp("$(sys.workdir)/masterfiles/masterfiles_default/$(from)","192.168.33.45"),
                         repository => "$(sys.workdir)/repository",
                         changes => detect_content,
                         action => "immediate";
