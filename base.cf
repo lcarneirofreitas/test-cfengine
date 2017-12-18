@@ -268,3 +268,16 @@ bundle agent configura_timezone {
                 "/usr/sbin/dpkg-reconfigure -f Noninteractive tzdata";
 }
 
+## bundle para executar comandos caso a condicao seja falsa
+bundle agent run_cmd_if_not_success(cond,command) {
+
+       classes:
+                "exitcondition" expression => returnszero("$(cond) >/dev/null 2>&1","useshell");
+
+       commands:
+                !exitcondition::
+                          "$(command)",
+                          contain => in_shell_and_silent,
+                          contain => umask_default;
+}
+
