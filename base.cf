@@ -184,6 +184,20 @@ bundle agent copy_from_master_default(to,from,mod,user,group) {
                         action => "immediate";
 }
 
+# bundle para copiar arquivos default e restartar o servico
+bundle agent copy_from_master_default_and_restart_service(to,from,mod,user,group,service) {
+
+        files:  
+                "$(to)" 
+                        perms => change_owner("$(mod)","$(user)","$(group)"),
+                        copy_from => secure_cp("$(sys.workdir)/masterfiles_default/$(from)","192.168.33.45"),
+                        repository => "$(sys.workdir)/repository",
+                        classes => if_repaired("$(service)_restart"),
+                        changes => detect_content,
+                        action => "immediate";
+}
+
+
 ## bundle para copiar diretorios e arquivos recursivamente
 bundle agent copy_recursive(to,from,mod,user,group) {
 
