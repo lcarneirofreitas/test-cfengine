@@ -20,8 +20,8 @@ methods:
 	"create directorie"	
 	usebundle => create_directories("/tmp/teste44","0440","root","root");
 
-	"create directorie"	
-	usebundle => create_directories("/tmp/teste55","0640","root","root");
+	#"create directorie"	
+	#usebundle => create_directories("/tmp/teste55","0640","root","root");
 
 	"remove /tmp/teste"
 	usebundle => delete_file("/tmp/teste");
@@ -57,4 +57,7 @@ methods:
 
 	"Link create"
 	usebundle => create_sym_link("/tmp/teste2000","/tmp/teste-teravoz123456");
+
+	"change permission"
+	usebundle => change_permission("/tmp/teste55","0644","saroka","saroka");
 }
