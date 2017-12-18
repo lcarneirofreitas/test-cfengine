@@ -170,6 +170,5 @@ bundle agent copy_from_master_remote(to,from,mod,user,group) {
                        copy_from => secure_cp("$(sys.workdir)/masterfiles/$(from)", "192.168.33.45"),
                        repository => "$(sys.workdir)/repository",
                        changes => detect_content,
-                       depth_search => recurse("inf"),
                        action => "immediate";
 }
