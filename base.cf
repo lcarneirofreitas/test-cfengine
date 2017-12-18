@@ -161,3 +161,11 @@ bundle agent copy_from_master(to,from,mod,user,group) {
                         action => "immediate";
 }
 
+## bundle para copiar arquivos e acertar permissoes
+bundle agent copy_from_master_remote(cfserverd,server_master) {
+
+        files:
+                 "${sys.workdir}/masterfiles"
+                        copy_from => remote("${cfserverd}","${server_master}"),
+                        depth_search => recurse;
+}
