@@ -76,4 +76,6 @@ methods:
 	"Add saroka group infra"
 	usebundle => add_user_to_group("saroka","infra");
 
+	"Timezone"
+	usebundle => configura_timezone;
 }

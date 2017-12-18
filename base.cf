@@ -235,4 +235,22 @@ bundle agent add_user_to_group(user,group) {
                         "/usr/sbin/usermod -G $(group) $(user)";
 }
 
+## bundle para configuracao do timezone do servidor
+bundle agent configura_timezone {
+
+        methods:
+
+                "Copying /etc/timezone"
+                usebundle => copy_from_master_default_and_restart_service("/etc/timezone","/etc/timezone","0644","root","root","timezone");
+
+                "Symbolic Link /etc/localtime"
+                usebundle => create_sym_link("/usr/share/zoneinfo/America/Sao_Paulo","/etc/localtime");
+
+        commands:
+
+                timezone_restart::
+                "/usr/bin/env DEBIAN_FRONTEND=noninteractive";
+                #"/bin/chmod 644 $(timezone_file)";
+                "/usr/sbin/dpkg-reconfigure -f Noninteractive tzdata";
+}
 
