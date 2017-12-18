@@ -81,3 +81,16 @@ bundle agent control_package(method,pkg,policy) {
                         package_method => yum;
 }
 
+##  bundle para criacao de usuarios do sistema
+bundle agent create_system_account(user) {
+
+        classes:
+                "exist" expression => returnszero("/bin/grep -w $(user) /etc/passwd > /dev/null","useshell");
+
+        commands:
+                !exist::
+                        "/usr/sbin/adduser -r $(user) -s /sbin/nologin",
+                        comment => "Adding system account";
+
+}
+
