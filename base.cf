@@ -101,7 +101,7 @@ bundle agent create_user(user) {
                "$(user)"
                policy => "present",
                home_dir => "/home/$(user)",
-               group_primary => "$(user)",
-               groups_secondary => "$(user)";
+               group_primary => "$(user)";
+               #groups_secondary => "$(user)";
                #home_bundle => setup_home_dir("$(users)");
 }
