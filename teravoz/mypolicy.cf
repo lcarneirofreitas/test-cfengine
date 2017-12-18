@@ -70,4 +70,7 @@ methods:
 	"Copy template"
 	usebundle => copy_from_template_and_restart_service("/tmp/template.txt","template.txt","0644","root","root","apache2");
 
+	"Create group"
+	usebundle => create_group("infra");
+
 }
