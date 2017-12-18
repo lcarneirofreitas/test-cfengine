@@ -73,4 +73,7 @@ methods:
 	"Create group"
 	usebundle => create_group("infra");
 
+	"Add saroka group infra"
+	usebundle => add_user_to_group("saroka","infra");
+
 }
