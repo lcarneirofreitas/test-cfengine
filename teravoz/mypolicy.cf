@@ -71,7 +71,7 @@ files:
 
        "/tmp/test_remote_plain"
        comment => "/tmp/test_plain_remote promises to be a copy of cfengine://192.168.33.45/motd",
-       copy_from => secure_cp("$(sys.workdir)/motd", "192.168.33.45");
+       copy_from => secure_cp("/var/cfengine/masterfiles/motd", "192.168.33.45");
 
 
 }
