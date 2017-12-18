@@ -181,7 +181,7 @@ bundle agent copy_recursive(to,from,mod,user,group) {
                         perms => change_owner("$(mod)","$(user)","$(group)"),
                         copy_from => secure_cp("$(sys.workdir)/masterfiles/$(from)","192.168.33.45"),
                         repository => "$(sys.workdir)/repository",
-                        depth_search => recurse,
+                        depth_search => recurse("inf"),
                         changes => detect_content,
                         action => "immediate";
 }
