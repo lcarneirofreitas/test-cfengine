@@ -53,5 +53,5 @@ methods:
 	#usebundle => create_user("saroka");
 
 	"Create user saroka"
-	usebundle => create_user("saroka","/home/saroka","/bin/bash","123456789ddsadas","User admin server","del");
+	usebundle => create_user("saroka","/home/saroka","/bin/bash","123456789ddsadas","User admin server","add");
 }
