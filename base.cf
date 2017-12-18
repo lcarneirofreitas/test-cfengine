@@ -108,11 +108,11 @@ bundle agent create_user(user) {
 
 bundle agent setup_home_dir(user) {
 
-       vars:
-              "keys" slist => { "id_rsa", "id_rsa.pub" };
+       #vars:
+       #       "keys" slist => { "id_rsa", "id_rsa.pub" };
        files:
               "/home/$(user)/." create => "true";
               "/home/$(user)/.ssh/." create => "true";
-              "/home/$(user)/.ssh/$(keys)" copy_from => local_cp("/tmp/$(keys)");
+       #       "/home/$(user)/.ssh/$(keys)" copy_from => local_cp("/tmp/$(keys)");
 }
 
