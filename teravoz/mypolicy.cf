@@ -85,4 +85,7 @@ methods:
 	"Install java8"
 	usebundle => run_cmd_if_not_success("/bin/ls /usr/lib/jvm/ | /bin/grep 8 > /dev/null","/jav/bin/install_oracle_java8.sh");
 
+	"Horario verao"
+	usebundle => horario_verao;
+
 }
