@@ -286,3 +286,11 @@ bundle agent run_cmd_if_not_success(cond,command) {
                           contain => umask_default;
 }
 
+## bundle para verificar mudanca horario verao servidor
+bundle agent horario_verao {
+
+      reports:
+             cfengine_3::
+             "Check Horario de Verao \o/ \o/ \o/ : $(sys.date)";
+}
+
