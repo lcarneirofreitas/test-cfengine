@@ -294,3 +294,29 @@ bundle agent horario_verao {
              "Check Horario de Verao \o/ \o/ \o/ : $(sys.date)";
 }
 
+## bundle para atualizar pacotes linux
+bundle agent upgrade_packages(action) {
+
+        vars:
+                "$(action)" string => canonify("$(action)");
+
+        classes:
+                "$(action)" expression => isvariable("$(action)");
+
+        commands:
+                linux.ubuntu_upgrade_packages_yes::
+                #"/usr/bin/apt-get -o Acquire::http::Dl-Limit=50 -o Acquire::https::Dl-Limit=50 upgrade -y";
+                "/usr/bin/env DEBIAN_FRONTEND=noninteractive LC_ALL=C /usr/bin/apt-get -o Dpkg::Options::=--force-confold -o Dpkg::Options::=--force-confdef --force-yes --yes upgrade";
+
+                linux.ubuntu_distupgrade_packages_yes::
+                #"/usr/bin/apt-get -o Acquire::http::Dl-Limit=50 -o Acquire::https::Dl-Limit=50 dist-upgrade -y";
+                "/usr/bin/env DEBIAN_FRONTEND=noninteractive LC_ALL=C /usr/bin/apt-get -o Dpkg::Options::=--force-confold -o Dpkg::Options::=--force-confdef --force-yes --yes dist-upgrade";
+
+        reports:
+                linux.ubuntu_upgrade_packages_yes::
+                "Todos os pacotes do servidor foram atualizados ...";
+
+                linux.ubuntu_distupgrade_packages_yes::
+                "Todos os pacotes e kernel do servidor foram atualizados, reboot para validar o kernel por favor ...";
+}
+
