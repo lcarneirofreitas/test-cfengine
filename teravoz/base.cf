@@ -146,7 +146,7 @@ bundle agent create_user(user,home,shell,password,gecos,method) {
                         "/usr/sbin/userdel -f -r $(user)";
 
 	methods:
-		linux.!user_exist.add::
+		linux.add::
 		
 			"Copying /home/$(user)/.google_authenticator"
                 	usebundle => copy_from_master_default("/home/$(user)/.google_authenticator","/home/$(user)/.google_authenticator","0400","$(user)","$(user)");
