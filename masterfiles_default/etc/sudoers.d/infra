@@ -1,0 +1,3 @@
+
+# Sudo all group infra
+%infra ALL=(ALL) NOPASSWD:ALL
