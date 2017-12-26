@@ -1,0 +1,30 @@
+####################################################################################
+bundle common g {
+
+        vars:   
+                any::
+                "class_file" string => "/etc/default/classes_servidores_teravoz";
+                "class_strs" slist => readstringlist("$(class_file)",
+                                                     "#.*?\n", "\s+", "inf", "inf");
+        classes:
+                "$(class_strs)" expression => "any";
+}
+
+# Desativado pois ao quebrar as confs do cfengine no commit
+# era obrigado a fazer git pull dentro do cf server
+# leandro.freitas@teravoz.com.br Tue Dec 26 14:01:51 -02 2017
+## update git repositorie cfengine
+#bundle agent vcs_update
+#{
+#commands:
+#  policy_server::
+#    "/usr/bin/git"
+#      args => "pull --ff-only origin master",
+#      contain => masterfiles_contain;
+#}
+#
+#body contain masterfiles_contain
+#{
+#  chdir => "/var/cfengine/masterfiles";
+#}
+

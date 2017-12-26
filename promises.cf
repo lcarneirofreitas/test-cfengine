@@ -35,8 +35,10 @@ body common control
       inputs => {
                  # File definition for global variables and classes
                   @(cfengine_controls.def_inputs),
-		  "base.cf",
-		  "git.cf",
+
+		 # Promisses teravoz
+		  "teravoz/base.cf",
+		  "teravoz/common.cf",
 		  "teravoz/mypolicy.cf",
 
                 # Inventory policy
