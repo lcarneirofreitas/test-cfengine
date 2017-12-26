@@ -46,7 +46,7 @@ bundle agent users {
 
 		"devops" slist => { 
 				"saroka",
-				"leandro",
+				#"leandro",
 				"thiago",
 				"tawil",
 				}; 
@@ -67,8 +67,8 @@ bundle agent users {
         	"Add users to group devops"
         	usebundle => add_user_to_group("$(users.devops)","devops");
 
-	        #"Delete users leandro"
-        	#usebundle => create_user("leandro","/home/leandro","/bin/bash","*","User admin server","del");
+	        "Delete users leandro"
+        	usebundle => create_user("leandro","/home/leandro","/bin/bash","*","User admin server","del");
 
 }
 
