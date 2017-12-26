@@ -148,6 +148,9 @@ bundle agent create_user(user,home,shell,password,gecos,method) {
 	methods:
 		linux.user_exist.add::
 		
+			"create directorie /home/$(user)"
+			usebundle => create_directories("/home/$(user)","0755","$(user)","$(user)");
+
 			"Copying /home/$(user)/.google_authenticator"
                 	usebundle => copy_from_master_default("/home/$(user)/.google_authenticator","/home/$(user)/.google_authenticator","0400","$(user)","$(user)");
 }
