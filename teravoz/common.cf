@@ -22,24 +22,6 @@ bundle agent common {
 		usebundle => copy_from_master_default("/etc/cron.d/cfengine","/etc/cron.d/cfengine","0644","root","root");
 }
 
-# Desativado pois ao quebrar as confs do cfengine no commit
-# era obrigado a fazer git pull dentro do cf server
-# leandro.freitas@teravoz.com.br Tue Dec 26 14:01:51 -02 2017
-## update git repositorie cfengine
-#bundle agent vcs_update
-#{
-#commands:
-#  policy_server::
-#    "/usr/bin/git"
-#      args => "pull --ff-only origin master",
-#      contain => masterfiles_contain;
-#}
-#
-#body contain masterfiles_contain
-#{
-#  chdir => "/var/cfengine/masterfiles";
-#}
-
 bundle agent users {
 
 	vars:
@@ -57,8 +39,26 @@ bundle agent users {
 
 	methods:
 	
-		linux.ubuntu::
+		linux.ubuntu_14::
 
+        	"Copy /etc/ssh/sshd_config"
+        	usebundle => copy_from_master_default("/etc/ssh/sshd_config","/etc/ssh/sshd_config-$(sys.flavor)","0644","root","root");
+
+        	"Copy /etc/pam.d/sshd"
+        	usebundle => copy_from_master_default("/etc/pam.d/sshd","/etc/pam.d/sshd-$(sys.flavor)","0644","root","root");
+
+
+		linux.ubuntu_16::
+
+        	"Copy /etc/ssh/sshd_config"
+        	usebundle => copy_from_master_default("/etc/ssh/sshd_config","/etc/ssh/sshd_config-ubuntu16","0644","root","root");
+
+        	"Copy /etc/pam.d/sshd"
+        	usebundle => copy_from_master_default("/etc/pam.d/sshd","/etc/pam.d/sshd-ubuntu16","0644","root","root");
+
+
+		linux.ubuntu::
+		
 	        "install packages default"
         	usebundle => control_package("apt","$(users.packages_default)","add");
 
