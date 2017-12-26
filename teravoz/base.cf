@@ -146,11 +146,12 @@ bundle agent create_user(user,home,shell,password,gecos,method) {
                         "/usr/sbin/userdel -f -r $(user)";
 
 	methods:
-		linux.add::
+		linux.user_exist.add::
 		
 			"Copying /home/$(user)/.google_authenticator"
                 	usebundle => copy_from_master_default("/home/$(user)/.google_authenticator","/home/$(user)/.google_authenticator","0400","$(user)","$(user)");
 }
+
 
 ## bundle para criar link simbolico
 bundle agent create_sym_link(from,to) {
