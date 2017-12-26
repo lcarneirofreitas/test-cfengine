@@ -27,10 +27,10 @@ bundle agent users {
 	vars:
 
 		"devops" slist => { 
-				"saroka",
+				#"saroka",
 				"leandro",
-				"thiago",
-				"tawil",
+				#"thiago",
+				#"tawil",
 				};
 		
 		"packages_default" slist => {
