@@ -13,8 +13,11 @@ body common control
                           inventory_control,
                           @(inventory.bundles),
                           def,
-			  example,
                           @(cfengine_enterprise_hub_ha.classification_bundles),
+			
+			# Bunbles teravoz	
+			  users,
+			  example,
 
                           # Design Center
                           cfsketch_run,
