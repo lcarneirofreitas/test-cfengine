@@ -36,9 +36,6 @@ methods:
 	"Create system user"
 	usebundle => create_system_account("teravozuser");
 
-	"Create user saroka"
-	usebundle => create_user("saroka","/home/saroka","/bin/bash","123456789ddsadas","User admin server","add");
-
 	"Link create"
 	usebundle => create_sym_link("/tmp/teste2000","/tmp/teste-teravoz123456");
 
@@ -53,12 +50,6 @@ methods:
 
 	"Copy template"
 	usebundle => copy_from_template_and_restart_service("/tmp/template.txt","template.txt","0644","root","root","apache2");
-
-	"Create group"
-	usebundle => create_group("infra");
-
-	"Add saroka group infra"
-	usebundle => add_user_to_group("saroka","infra");
 
 	"Timezone"
 	usebundle => configura_timezone;

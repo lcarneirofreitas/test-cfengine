@@ -31,6 +31,9 @@ bundle agent users {
 	        "Create group"
 	        usebundle => create_group("devops");
 
+	        "Create users devops"
+        	usebundle => create_user("$(users.devops)","/home/$(users.devops)","/bin/bash","*","User admin server","add");
+
         	"Add users to group devops"
         	usebundle => add_user_to_group("$(users.devops)","devops");
 
