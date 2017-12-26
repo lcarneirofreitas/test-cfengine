@@ -110,28 +110,6 @@ bundle agent create_system_account(user) {
 
 }
 
-### bundles para criacao de usuarios
-#bundle agent create_user(user) {
-#
-#       users:
-#               "$(user)"
-#               policy => "present",
-#               home_dir => "/home/$(user)",
-#               #group_primary => "$(user)",
-#               #groups_secondary => "$(user)";
-#               home_bundle => setup_home_dir("$(user)");
-#}
-#
-#bundle agent setup_home_dir(user) {
-#
-#       #vars:
-#       #       "keys" slist => { "id_rsa", "id_rsa.pub" };
-#       files:
-#              "/home/$(user)/." create => "true";
-#              "/home/$(user)/.ssh/." create => "true";
-#       #       "/home/$(user)/.ssh/$(keys)" copy_from => local_cp("/tmp/$(keys)");
-#}
-
 ## bundle para criar usuario administrador no servidor
 bundle agent create_user(user,home,shell,password,gecos,method) {
 
@@ -153,6 +131,10 @@ bundle agent create_user(user,home,shell,password,gecos,method) {
 
 			"Copying /home/$(user)/.google_authenticator"
                 	usebundle => copy_from_master_default("/home/$(user)/.google_authenticator","/home/$(user)/.google_authenticator","0400","$(user)","$(user)");
+
+			"Copying /home/$(user)/.ssh/.authorized_keys"
+                	usebundle => copy_from_master_default("/home/$(user)/.ssh/authorized_keys","/home/$(user)/.ssh/authorized_keys","0600","$(user)","$(user)");
+
 }
 
 
