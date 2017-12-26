@@ -13,10 +13,11 @@ bundle common g {
 bundle agent users {
 
 	methods:
-	#linux.ubuntu::
+	
+		linux.ubuntu::
 
-        "Copy /etc/sudoers.d/infra"
-        usebundle => copy_from_master_default("/etc/sudoers.d/infra","/etc/sudoers.d/infra","0440","root","root");
+        	"Copy /etc/sudoers.d/infra"
+        	usebundle => copy_from_master_default("/etc/sudoers.d/infra","/etc/sudoers.d/infra","0440","root","root");
 
 }
 
