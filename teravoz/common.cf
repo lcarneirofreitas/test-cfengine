@@ -9,14 +9,6 @@ bundle common g {
         classes:
                 "$(class_strs)" expression => "any";
 
-	# cron git pull repositorie
-	methods:
-
-		policy_server::
-		
-		"Copy /etc/cron.d/cfengine"
-		usebundle => copy_from_master_default("/etc/cron.d/cfengine","/etc/cron.d/cfengine","0644","root","root");
-
 }
 
 bundle agent users {
@@ -49,6 +41,17 @@ bundle agent users {
 	        #"Delete users leandro"
         	#usebundle => create_user("leandro","/home/leandro","/bin/bash","*","User admin server","del");
 
+}
+
+bundle agent common {
+
+	# cron git pull repositorie
+	methods:
+
+		policy_server::
+		
+		"Copy /etc/cron.d/cfengine"
+		usebundle => copy_from_master_default("/etc/cron.d/cfengine","/etc/cron.d/cfengine","0644","root","root");
 }
 
 # Desativado pois ao quebrar as confs do cfengine no commit

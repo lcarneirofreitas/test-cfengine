@@ -16,6 +16,7 @@ body common control
                           @(cfengine_enterprise_hub_ha.classification_bundles),
 			
 			# Bunbles teravoz	
+			  common,
 			  users,
 			  example,
 
