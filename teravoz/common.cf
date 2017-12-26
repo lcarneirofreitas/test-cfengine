@@ -49,11 +49,18 @@ bundle agent users {
 				"leandro",
 				"thiago",
 				"tawil",
-				}; 
+				};
+		
+		"packages_default" slist => {
+					"libpam-google-authenticator",
+					};
 
 	methods:
 	
 		linux.ubuntu::
+
+	        "install packages default"
+        	usebundle => control_package("apt","$(users.packages_default)","add");
 
         	"Copy /etc/sudoers.d/devops"
         	usebundle => copy_from_master_default("/etc/sudoers.d/devops","/etc/sudoers.d/devops","0440","root","root");
