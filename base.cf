@@ -8,12 +8,12 @@ body contain umask_default {
 ## body copy secure cp and purge 
 body copy_from secure_and_purge_cp(from,server)
 {
-source      => "$(from)";
-servers     => { "$(server)" };
-compare     => "digest";
-encrypt     => "true";
-verify      => "true";
-purge       => "true";
+        source      => "$(from)";
+        servers     => { "$(server)" };
+        compare     => "digest";
+        encrypt     => "true";
+        verify      => "true";
+        purge       => "true";
 }
 
 ## body para acertar permissoes
