@@ -41,26 +41,14 @@ bundle agent users {
 	
 		linux.ubuntu::
 
+	        "install packages default"
+        	usebundle => control_package("apt","$(users.packages_default)","add");
+
         	"Copy /etc/ssh/sshd_config"
         	usebundle => copy_from_master_default("/etc/ssh/sshd_config","/etc/ssh/sshd_config-$(sys.flavor)","0644","root","root");
 
         	"Copy /etc/pam.d/sshd"
         	usebundle => copy_from_master_default("/etc/pam.d/sshd","/etc/pam.d/sshd-$(sys.flavor)","0644","root","root");
-
-
-		#linux.ubuntu_16::
-
-        	#"Copy /etc/ssh/sshd_config"
-        	#usebundle => copy_from_master_default("/etc/ssh/sshd_config","/etc/ssh/sshd_config-ubuntu16","0644","root","root");
-
-        	#"Copy /etc/pam.d/sshd"
-        	#usebundle => copy_from_master_default("/etc/pam.d/sshd","/etc/pam.d/sshd-ubuntu16","0644","root","root");
-
-
-		linux.ubuntu::
-		
-	        "install packages default"
-        	usebundle => control_package("apt","$(users.packages_default)","add");
 
         	"Copy /etc/sudoers.d/devops"
         	usebundle => copy_from_master_default("/etc/sudoers.d/devops","/etc/sudoers.d/devops","0440","root","root");
