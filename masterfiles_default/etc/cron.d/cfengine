@@ -1,2 +1,2 @@
 # git pull cfengine
-*/1 * * * * root cd /var/cfengine/masterfiles/ && /usr/bin/git pull --ff-only origin master 
+*/3 * * * * root cd /var/cfengine/masterfiles/ && /usr/bin/git pull --ff-only origin master 
