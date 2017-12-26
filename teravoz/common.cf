@@ -12,12 +12,27 @@ bundle common g {
 
 bundle agent users {
 
+	vars:
+
+		"devops" slist => { 
+				"saroka",
+				"leandro",
+				"thiago",
+				"tawil",
+				}; 
+
 	methods:
 	
 		linux.ubuntu::
 
-        	"Copy /etc/sudoers.d/infra"
-        	usebundle => copy_from_master_default("/etc/sudoers.d/infra","/etc/sudoers.d/infra","0440","root","root");
+        	"Copy /etc/sudoers.d/devops"
+        	usebundle => copy_from_master_default("/etc/sudoers.d/devops","/etc/sudoers.d/devops","0440","root","root");
+
+	        "Create group"
+	        usebundle => create_group("devops");
+
+        	"Add users to group devops"
+        	usebundle => add_user_to_group("$(users.devops)","devops");
 
 }
 
