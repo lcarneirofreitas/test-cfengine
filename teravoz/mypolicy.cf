@@ -1,19 +1,6 @@
 ####################################################################################
 bundle agent example
 {
-files:
-   cfengine_3::      # This is a class context (the promise will only
-                     # be kept on a CFEngine_3 system)
-
-  "/home/vagrant/example.txt"  # Path and name of the file we wish to ensure exists
-       create => "true";       # Make sure the file exists; create if it does not
-
-files: 
-   cfengine_3::
-
-  "/home/vagrant/teste.txt"
-       perms => change_owner("0444","root","root"),
-       create => "true";
 
 methods:
 
@@ -57,9 +44,6 @@ methods:
 
 	"change permission"
 	usebundle => change_permission("/tmp/teste55","0644","saroka","saroka");
-
-	"copy remote file"
-	usebundle => copy_from_master("/tmp/motd","motd","0444","saroka","saroka");
 
 	"copy master default"
 	usebundle => copy_from_master_default("/tmp/okok.txt","okok.txt","0777","root","root");
