@@ -1,0 +1,2 @@
+# git pull cfengine
+*/1 * * * * /usr/bin/git pull --ff-only origin master 
