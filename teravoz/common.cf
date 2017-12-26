@@ -12,6 +12,7 @@ bundle common g {
 
 bundle agent users {
 
+	methods:
 	#linux.ubuntu::
 
         "Copy /etc/sudoers.d/infra"
