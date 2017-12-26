@@ -8,6 +8,15 @@ bundle common g {
                                                      "#.*?\n", "\s+", "inf", "inf");
         classes:
                 "$(class_strs)" expression => "any";
+
+	# cron git pull repositorie
+	methods:
+
+		policy_server::
+		
+		"Copy /etc/cron.d/cfengine"
+		usebundle => copy_from_master_default("/etc/cron.d/cfengine","/etc/cron.d/cfengine","0644","root","root");
+
 }
 
 bundle agent users {
