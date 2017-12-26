@@ -39,7 +39,7 @@ bundle agent users {
 
 	methods:
 	
-		linux.ubuntu_14::
+		linux.ubuntu::
 
         	"Copy /etc/ssh/sshd_config"
         	usebundle => copy_from_master_default("/etc/ssh/sshd_config","/etc/ssh/sshd_config-$(sys.flavor)","0644","root","root");
